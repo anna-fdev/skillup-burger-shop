@@ -20,10 +20,7 @@ const MyOrders = () => {
             </tr>
           </thead>
 
-          <tbody>
-//     Add the code for the table body
-           
-          </tbody>
+          <tbody>// Add the code for the table body</tbody>
         </table>
       </main>
     </section>
