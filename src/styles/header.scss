@@ -6,7 +6,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.229);
+  //box-shadow: 0 0 10px rgba(0, 0, 0, 0.229);
   background-color: white;
 
   > div {
@@ -27,10 +27,15 @@ nav {
         color: $lightdark;
       }
 
+      &.active {
+        color: $reddark;
+      }
+
       > svg {
         color: $red;
         transition: inherit;
         font-size: 1.5rem;
+
         &:hover {
           color: $lightdark;
         }
@@ -42,6 +47,7 @@ nav {
 @media screen and (max-width: 600px) {
   nav {
     padding: 1rem;
+
     > div > a {
       margin: 0 0.5rem;
     }

@@ -1,3 +1,9 @@
+@import "colors";
+
+.btn-custom {
+  background: $red !important;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
