@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Country, State } from "country-state-city";
 import Popup from "reactjs-popup";
 
 const Shipping = () => {
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const countries = Country.getAllCountries();
+  const states = State.getStatesOfCountry(selectedCountry);
+
   return (
     <section className="shipping">
       <main>
@@ -17,22 +21,44 @@ const Shipping = () => {
             <input type="text" placeholder="Enter City" />
           </div>
           <div>
-            {/* Complete the code for the COUNTRY DROPDOWN*/}
             <label>Country</label>
-
-            <select>
-              <option value="">Country</option>
-              // Enter the code here for country dropdown
+            <select
+              onChange={(e) => {
+                setSelectedCountry(e.target.value);
+              }}
+            >
+              {countries.map((country) => (
+                <option key={country.isoCode} value={country.isoCode}>
+                  {country.name}
+                </option>
+              ))}
             </select>
           </div>
-          <div>{/* Add the code for the STATE DROPDOWN*/}</div>
+          <div>
+            <label>State</label>
+            <select>
+              {states.map((state) => (
+                <option key={state.isoCode} value={state.countryCode}>
+                  {state.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <div>
             <label>Pin Code</label>
             <input type="number" placeholder="Enter Pincode" />
           </div>
-          // Enter thr code for contact
+          <div>
+            <label>Telephone</label>
+            <input type="number" placeholder="Enter Telephone Number" />
+          </div>
+
           <Popup
-            trigger={<button type="button">Confirm Order</button>}
+            trigger={
+              <button type="button" className="btn">
+                Confirm Order
+              </button>
+            }
             position="right center"
           >
             <div
