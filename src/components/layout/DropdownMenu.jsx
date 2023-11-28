@@ -15,7 +15,7 @@ function DropdownMenu() {
 
   return (
     <div>
-      <nav className="navbar-expand-lg">
+      <nav className="navbar-expand-lg navbar-custom">
         <div className="container">
           <div className="btn-group">
             <button

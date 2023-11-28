@@ -1,5 +1,6 @@
 import React from "react";
 import { AiFillYoutube, AiFillInstagram, AiFillGithub } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -14,15 +15,15 @@ const Footer = () => {
       </section>
       <aside>
         <h4>Follow Us</h4>
-        <a href="#">
+        <Link to="https://www.youtube.com" target="_blank">
           <AiFillYoutube />
-        </a>
-        <a href="#">
+        </Link>
+        <Link to="https://www.instagram.com/" target="_blank">
           <AiFillInstagram />
-        </a>
-        <a href="#">
+        </Link>
+        <Link to="https://github.com/" target="_blank">
           <AiFillGithub />
-        </a>
+        </Link>
       </aside>
     </footer>
   );
