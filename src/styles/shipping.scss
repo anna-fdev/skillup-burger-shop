@@ -3,14 +3,14 @@
 .shipping {
   background-color: $pink;
   width: 100%;
-  height: 100vh;
+  //height: 100vh;
 
   > main {
     height: 100%;
     background-color: white;
     max-width: 900px;
     margin: auto;
-    padding: 0 2rem;
+    padding: 2rem;
 
     > h1 {
       text-transform: uppercase;

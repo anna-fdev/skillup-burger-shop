@@ -1,17 +1,21 @@
 @import "colors";
 
-nav {
-  height: 5rem;
-  padding: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.229);
+.header {
+  #responsive-navbar-nav {
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 1rem;
+  }
 
-  > div {
+  .nav-custom {
+    max-height: 5rem;
+    padding: 2rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.229);
+    position: relative;
 
     > svg {
       color: $red;
@@ -43,27 +47,19 @@ nav {
     }
   }
 
-  .navbar-custom {
-    box-shadow: none;
-  }
-
-  .btn-custom {
-    background-color: $red;
-    color: white;
-
-    &:hover {
-      background-color: $reddark;
-      color: white;
-    }
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27%3e%3cpath stroke=%27rgba%280, 0, 0, 0.55%29%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 stroke-width=%272%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e") !important;
   }
 }
 
 @media screen and (max-width: 600px) {
-  nav {
-    padding: 1rem;
+  .header {
+    .nav-custom {
+      padding: 1rem;
 
-    > div > a {
-      margin: 0 0.5rem;
+      > a {
+        margin: 0 0.5rem;
+      }
     }
   }
 }

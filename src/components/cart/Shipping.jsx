@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Country, State } from "country-state-city";
 import Popup from "reactjs-popup";
+import { Link } from "react-router-dom";
 
 const Shipping = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -55,9 +56,11 @@ const Shipping = () => {
 
           <Popup
             trigger={
-              <button type="button" className="btn">
-                Confirm Order
-              </button>
+              <Link to="/myorders">
+                <button type="button" className="btn">
+                  Confirm Order
+                </button>
+              </Link>
             }
             position="right center"
           >
