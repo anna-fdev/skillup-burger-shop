@@ -5,6 +5,14 @@
     justify-content: space-between;
     background-color: #fff;
     padding: 1rem;
+
+    .cart-amount {
+      color: white;
+      margin: 0 0.5rem;
+      padding: 0.2rem 0.5rem;
+      background-color: $red;
+      border-radius: 1rem;
+    }
   }
 
   .nav-custom {

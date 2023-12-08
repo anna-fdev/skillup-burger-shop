@@ -3,10 +3,13 @@ import { GiHamburger } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { Navbar, NavDropdown } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
+import { useSelector } from "react-redux";
+import { selectCartItemAmount } from "../../store/cartSlice";
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
   const [navLinks, setNavLinks] = useState([]);
+  const cartItemAmount = useSelector(selectCartItemAmount);
 
   useEffect(() => {
     const navs = [
@@ -49,6 +52,9 @@ const Header = () => {
             </Nav.Link>
             <Nav.Link as={Link} to="/cart" onClick={() => setExpanded(false)}>
               Shopping Cart
+              {cartItemAmount && (
+                <span className="cart-amount">{cartItemAmount}</span>
+              )}
             </Nav.Link>
           </Nav>
           <Nav>

@@ -1,8 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Popup from "reactjs-popup";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../../store/cartSlice";
 
-const MenuCard = ({ itemNum, burgerSrc, price, title, handler, delay = 0 }) => {
+const MenuCard = ({ item: { id, title, img, price, delay = 0 } }) => {
+  const dispatch = useDispatch();
+
   return (
     <motion.div
       className="menuCard"
@@ -20,13 +24,17 @@ const MenuCard = ({ itemNum, burgerSrc, price, title, handler, delay = 0 }) => {
     >
       <div></div>
       <main>
-        <img src={burgerSrc} alt={itemNum} />
+        <img src={img} alt={title} />
 
         <h5>₹{price}</h5>
 
         <p>{title}</p>
+
         <Popup
-          trigger={<button onClick={() => handler(itemNum)}>Buy Now</button>}
+          trigger={<button>Add to Cart</button>}
+          onOpen={() => {
+            dispatch(addItemToCart(id));
+          }}
         >
           <div
             style={{

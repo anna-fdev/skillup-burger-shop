@@ -1,70 +1,87 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import burger1 from "../../assets/burger1.png";
-import burger2 from "../../assets/burger2.png";
-import burger3 from "../../assets/burger3.png";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  selectCartItemAmount,
+  selectItemTotalPrice,
+} from "../../store/cartSlice";
+import { selectMenuItemsInCart } from "../../store/menuSlice";
 
-const CartItem = ({ value, title, img, increment, decrement }) => (
-  <div className="cartItem">
-    <div>
-      <h4>{title}</h4>
-      <img src={img} alt="Item" />
-    </div>
+const TAX = 0.18;
+const SHIPPING = 200;
 
-    <div>
-      <button onClick={decrement}>-</button>
-      <input type="number" readOnly value={value} />
-      <button onClick={increment}>+</button>
+const CartItem = ({ menuItem: { title, img, id } }) => {
+  const items = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+
+  return (
+    <div className="cartItem">
+      <div>
+        <h4>{title}</h4>
+        <img src={img} alt="Item" />
+      </div>
+
+      <div>
+        <button
+          aria-label="Increment value"
+          onClick={() => {
+            dispatch(addItemToCart(id));
+          }}
+        >
+          +
+        </button>
+        <input type="number" readOnly value={items[id] || 0} />
+        <button
+          aria-label="Decrement value"
+          onClick={() => dispatch(removeItemFromCart(id))}
+        >
+          -
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Cart = () => {
-  const increment = (item) => {};
+  const itemsInCart = useSelector(selectMenuItemsInCart);
+  const totalPrice = useSelector(selectItemTotalPrice);
+  const cartItemAmount = useSelector(selectCartItemAmount);
 
-  const decrement = (item) => {};
+  if (!cartItemAmount) {
+    return (
+      <section className="cart">
+        <main>
+          <p style={{ textAlign: "center" }}>Your cart is empty!</p>
+        </main>
+      </section>
+    );
+  }
 
   return (
     <section className="cart">
       <main>
-        <CartItem
-          title={"Cheese Burger"}
-          img={burger1}
-          value={0}
-          increment={() => increment(1)}
-          decrement={() => decrement(1)}
-        />
-        <CartItem
-          title={"Veg Cheese Burger"}
-          img={burger2}
-          value={0}
-          increment={() => increment(2)}
-          decrement={() => decrement(2)}
-        />
-        <CartItem
-          title={"Cheese Burger with French Fries"}
-          img={burger3}
-          value={0}
-          increment={() => increment(3)}
-          decrement={() => decrement(3)}
-        />
+        {itemsInCart.map((item) => (
+          <CartItem key={item.id} menuItem={item} />
+        ))}
 
         <article>
           <div>
             <h4>Sub Total</h4>
-            <p>₹{2000}</p>
+            <p>₹{totalPrice}</p>
           </div>
           <div>
             <h4>Tax</h4>
-            <p>₹{2000 * 0.18}</p>
+            <p>₹{totalPrice * TAX}</p>
           </div>
           <div>
             <h4>Shipping Charges</h4>
-            <p>₹{200}</p>
+            <p>₹{SHIPPING}</p>
           </div>
           <div>
             <h4>Total</h4>
-            <p>₹{2000 + 2000 * 0.18 + 200}</p>
+            <p>₹{totalPrice + totalPrice * TAX + SHIPPING}</p>
           </div>
           <Link to="/shipping">Checkout</Link>
         </article>
