@@ -1,6 +1,16 @@
 import React from "react";
+import { TAX, SHIPPING } from "../../constants/constants";
+import { useSelector } from "react-redux";
+import { selectCartItems, selectItemTotalPrice } from "../../store/cartSlice";
+import { selectMenuItemsInCart } from "../../store/menuSlice";
 
 const OrderDetails = () => {
+  const totalPrice = useSelector(selectItemTotalPrice);
+  const itemsInCart = useSelector(selectMenuItemsInCart);
+  const cartItems = useSelector(selectCartItems);
+
+  const orderAmount = totalPrice + totalPrice * TAX + SHIPPING;
+
   return (
     <div className="orderDetails">
       <main>
@@ -47,37 +57,34 @@ const OrderDetails = () => {
         <div>
           <h1>Amount</h1>
           <p>
-            <b>Items Total</b> ₹2132
+            <b>Items Total</b> ₹{totalPrice}
           </p>
           <p>
-            <b>shipping Charges</b> ₹200
+            <b>Shipping Charges</b> ₹{SHIPPING}
           </p>
           <p>
-            <b>Tax</b> ₹213
+            <b>Tax</b> ₹{totalPrice * TAX}
           </p>
           <p>
-            <b>Total Amount</b> ₹{2132 + 200 + 213}
+            <b>Total Amount</b> ₹{orderAmount}
           </p>
         </div>
         <article>
           <h1>Ordered Items</h1>
-          <div>
-            <h4>Cheese Burger</h4>
-            <h4>12 * 232</h4>
-          </div>
-          <div>
-            <h4>Veg Cheese Burger</h4>
-            <h4>10 * 500</h4>
-          </div>
-          <div>
-            <h4>Burger Fries</h4>
-            <h4>10 * 1800</h4>
-          </div>
+          {itemsInCart.map((item) => {
+            return (
+              <div key={item.id}>
+                <h4>{item.title}</h4>
+                <h4>{`${cartItems[item.id]} * ${item.price}`}</h4>
+              </div>
+            );
+          })}
+
           <div>
             <h4>
               <strong>Sub Total</strong>
             </h4>
-            <h4>₹{2132 + 200 + 213}</h4>
+            <h4>₹{orderAmount}</h4>
           </div>
         </article>
       </main>

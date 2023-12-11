@@ -3,13 +3,9 @@ import burger2 from "../../assets/burger2.png";
 import Popup from "reactjs-popup";
 
 const Contact = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div className="contact">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <h2>Contact Us</h2>
         <input type="text" placeholder="Name" />
         <input type="email" placeholder="Email" />

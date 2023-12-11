@@ -51,7 +51,11 @@ const Shipping = () => {
           </div>
           <div>
             <label>Telephone</label>
-            <input type="number" placeholder="Enter Telephone Number" />
+            <input
+              type="number"
+              placeholder="Enter Telephone Number"
+              required
+            />
           </div>
 
           <Popup

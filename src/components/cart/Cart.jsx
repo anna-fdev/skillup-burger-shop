@@ -8,9 +8,7 @@ import {
   selectItemTotalPrice,
 } from "../../store/cartSlice";
 import { selectMenuItemsInCart } from "../../store/menuSlice";
-
-const TAX = 0.18;
-const SHIPPING = 200;
+import { TAX, SHIPPING } from "../../constants/constants";
 
 const CartItem = ({ menuItem: { title, img, id } }) => {
   const items = useSelector((state) => state.cart.items);
